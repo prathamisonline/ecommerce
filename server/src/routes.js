@@ -8,12 +8,12 @@
 // import CouponRouter from "./Routes/CouponRoutes.js";
 // import SneakerRouter from "./Routes/SneakersRoutes.js";
 // import SearchRouter from "./Routes/SearchRoutes.js";
-// import HomeRouter from "./Routes/HomeRoutes.js";
+import HomeRouter from "./routes/homeRoutes.js";
 import UserRouter from "./routes/userRoutes.js"
 
 export const routes = [
     UserRouter,
-    // PaymentRouter,
+    // PaymentRouter, 
     // AddressRouter,
     // ProductsRouter,
     // FavRouter,
