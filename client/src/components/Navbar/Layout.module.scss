@@ -1,0 +1,169 @@
+@import "../../common/variables.scss";
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--background-color);
+}
+
+nav {
+  @include displayFlex;
+  padding: 0 2.8rem;
+}
+
+.logo {
+  img {
+    width: 70px;
+  }
+}
+
+.link-list {
+  @include displayCenter;
+  gap: 20px;
+
+  li {
+    cursor: pointer;
+    font-weight: 600;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.nav-action {
+  @include displayCenter;
+  gap: 15px;
+  justify-content: flex-end;
+
+  button {
+    width: 32px;
+    height: 32px;
+    @include displayAllCenter;
+    border-radius: 100%;
+    background-color: transparent;
+
+    &:hover {
+      background-color: var(--card-color);
+    }
+  }
+
+  .m-search {
+    display: none;
+  }
+}
+
+.m-menu {
+  display: none;
+}
+
+.menu {
+  display: none;
+}
+
+.header-auth {
+  @include displayCenter;
+  justify-content: flex-end;
+  padding: 2px;
+  gap: 7px;
+  padding-right: 3.2rem;
+  padding-top: 5px;
+  padding-bottom: 0;
+
+  span {
+    font-size: var(--small-font-size);
+    font-weight: 600;
+    opacity: 0.7;
+    cursor: pointer;
+  }
+}
+
+.cart-button {
+  position: relative;
+
+  p {
+    background-color: black;
+    width: 17px;
+    height: 17px;
+    @include displayAllCenter;
+    border-radius: 100px;
+    color: var(--background-color);
+    font-size: 10px;
+    position: absolute;
+    top: -8%;
+    right: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .link-list {
+    display: none;
+  }
+
+  .menu {
+    display: flex;
+  }
+
+  .m-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-action-main {
+    display: none;
+  }
+
+  .nav-action {
+    .fav {
+      display: none;
+    }
+
+    .m-search {
+      display: flex;
+    }
+  }
+
+  nav {
+    padding: 0 1rem;
+  }
+  .auth-header {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .logo {
+    img {
+      margin-left: -10px;
+    }
+  }
+}
+
+footer {
+  padding: 1rem 3rem;
+  @include displayFlex;
+  background-color: var(--main-font-color);
+  margin-top: 1rem;
+  color: var(--background-color);
+}
+
+.social {
+  @include displayCenter;
+  gap: 1.5rem;
+}
+
+.social a {
+  color: var(--background-color);
+
+  &::hover {
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 968px) {
+  footer {
+    padding: 1rem;
+  }
+}
