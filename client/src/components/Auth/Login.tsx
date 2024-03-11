@@ -1,4 +1,5 @@
 import { useRecoilState } from "recoil";
+import React from "react";
 import styles from "./Auth.module.scss";
 import AuthHead from "./AuthHead";
 import { Link } from "react-router-dom";
@@ -30,7 +31,7 @@ const Login = () => {
         <AuthHead title="YOUR ACCOUNT FOR EVERYTHING NIKE" />
 
         <section className={styles["register-form-main"]}>
-          {/* <form onSubmit={handleSignIn}> */}
+          <form onSubmit={(e)=>e.preventDefault()}>
             <fieldset>
               <input
                 type="text"
@@ -39,9 +40,9 @@ const Login = () => {
                 name="email"
                 onChange={(e)=>{handleChange(e,"email")}}
               />
-              {/* {validate && email.trim().length <= 0 ? (
+              {loginForm.email && loginForm.email.trim().length <= 0 ? (
                 <p>Please enter your email</p>
-              ) : null} */}
+              ) : null}
             </fieldset>
 
             <fieldset>
@@ -52,9 +53,9 @@ const Login = () => {
                 name="password"
                 onChange={(e)=>{handleChange(e,"password")}}
               />
-              {/* {validate && password.trim().length <= 0 ? (
+              {loginForm.password && loginForm.password.trim().length <= 0 ? (
                 <p>Please enter password</p>
-              ) : null} */}
+              ) : null}
             </fieldset>
 
             <button className={styles["submit-form"]} onClick={handleSignIn}>
@@ -65,15 +66,11 @@ const Login = () => {
               Not a Member?{" "}
               <Link
                 to={"/register"}
-                onClick={() => {
-                //   setRegisterData(stateInitialValue);
-                //   setValidate(false);
-                }}
               >
                 Join Us.
               </Link>{" "}
             </span>
-          {/* </form> */}
+          </form>
         </section>
       </div>
     </main>

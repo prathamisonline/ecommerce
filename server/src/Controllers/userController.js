@@ -5,26 +5,27 @@ import bcrypt from "bcryptjs";
 export const createUser = async (req, res, next) => {
     const { email, password, ...rest } = req.body;
 
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(password, salt);
 
-    const userData = {
-        password: hash,
-        email: email.toLowerCase(),
-        ...rest
-    };
-
-    const user = await User.findOne({ email: email.toLowerCase() });
-
-    if (user) {
-        return next(createError({ status: 400, message: "User already exists" }));
-    }
-
-    const newUser = new User(userData);
-    await newUser.save();
-
-    res.status(201).json(newUser);
     try {
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(password, salt);
+
+        const userData = {
+            password: hash,
+            email: email.toLowerCase(),
+            ...rest
+        };
+
+        const user = await User.findOne({ email: email.toLowerCase() });
+
+        if (user) {
+            return next(createError({ status: 400, message: "User already exists" }));
+        }
+
+        const newUser = new User(userData);
+        await newUser.save();
+
+        res.status(201).json(newUser);
     } catch (error) {
         next(next);
     }

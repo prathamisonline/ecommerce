@@ -28,8 +28,22 @@ const useAuthApi = () => {
         },
   })
 
+  const { mutate: signUpMutate, isLoading: signUpLoading }=useMutation({
+    mutationFn:(data:any)=>{
+      return loginUser({userData:data,endpoints:"user"})
+    },
+    onSuccess:(data)=>{
+      navigate("/login");
+      successNotification("Registered successfully")
+    },
+    onError: ({ data }: AppError) => {
+          if (!data) return;
+          errorNotification("Something went wrong")
+        },
+  })
+
   return (
-    { loginMutate,loginLoading }
+    { loginMutate,loginLoading,signUpMutate,signUpLoading }
   );
 }
 

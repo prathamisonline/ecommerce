@@ -8,3 +8,7 @@ export const loginFormState=atom<any>({
     key:"loginDetailsState",
     default:{}
 })
+export const signUpFormState=atom<any>({
+    key:"signUpFormState",
+    default:{}
+})

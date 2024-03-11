@@ -1,34 +1,46 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import styles from "./Auth.module.scss";
 // import { useAuthContext } from "../../store/authContext";
 import { BsCheck } from "react-icons/bs";
 import { MdOutlineDateRange } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { signUpFormState } from "./store/state";      
+import useAuthApi from "./store/hooks";
 
 const RegisterForm = () => {
   const [active, setActive] = useState(false);
-//   const {
-//     registerData,
-//     setRegisterData,
-//     handleChange,
-//     handleRegisterUser,
-//     isLoading,
-//     validate,
-//     stateInitialValue,
-//     setValidate,
-//   } = useAuthContext();
+  const [signUpForm,setSignUpForm]=useRecoilState(signUpFormState)
+  console.log("🚀 ~ RegisterForm ~ signUpForm:", signUpForm)
+  const {signUpMutate,signUpLoading}=useAuthApi();
 
-  // const { name, email, password, about, birth, gender, country } = registerData;
-    const isLoading=false
-  // const female =
-  //   gender === "female"
-  //     ? `${styles["button"]} ${styles["active-button"]}`
-  //     : styles["button"];
+  const handleChange=useCallback((e,name)=>{
+   const {value}=e.target;
+    setSignUpForm((prev)=>({...prev,[name]:value}))
+  },[setSignUpForm])
 
-  // const male =
-  //   gender === "male"
-  //     ? `${styles["button"]} ${styles["active-button"]}`
-  //     : styles["button"];
+  const female =
+  signUpForm?.gender === "female"
+      ? `${styles["button"]} ${styles["active-button"]}`
+      : styles["button"];
+
+  const male =
+  signUpForm?.gender === "male"
+      ? `${styles["button"]} ${styles["active-button"]}`
+      : styles["button"];
+
+  const handleSubmit=useCallback(()=>{
+    const payload={
+      email: signUpForm?.email,
+      password: signUpForm?.password,
+      name: signUpForm?.name,
+      about: signUpForm?.about,
+      birth: signUpForm?.birth,
+      country:signUpForm?.country,
+      gender: signUpForm?.gender
+  }
+    signUpMutate(payload)
+  },[signUpForm?.about, signUpForm?.birth, signUpForm?.country, signUpForm?.email, signUpForm?.gender, signUpForm?.name, signUpForm?.password, signUpMutate])
 
   return (
     <section className={styles["register-form-main"]}>
@@ -37,8 +49,8 @@ const RegisterForm = () => {
           <input
             type="text"
             placeholder="Email address"
-            value={"email"}
-            onChange={()=>{}}
+            value={signUpForm?.email}
+            onChange={(e)=>handleChange(e,"email")}
             name="email"
           />
           {/* {validate && email.trim().length === 0 ? (
@@ -50,8 +62,8 @@ const RegisterForm = () => {
           <input
             type="text"
             placeholder="Password"
-            value={"password"}
-            onChange={()=>{}}
+            value={signUpForm?.password}
+            onChange={(e)=>handleChange(e,"password")}
             name="password"
           />
           {/* {validate && password.trim().length <= 4 ? (
@@ -63,8 +75,8 @@ const RegisterForm = () => {
           <input
             type="text"
             placeholder="Full Name"
-            value={"name"}
-            onChange={()=>{}}
+            value={signUpForm?.name}
+            onChange={(e)=>handleChange(e,"name")}
             name="name"
           />
           {/* {validate && name.trim().length === 0 ? (
@@ -76,8 +88,8 @@ const RegisterForm = () => {
           <input
             type="text"
             placeholder="About"
-            value={"about"}
-            onChange={()=>{}}
+            value={signUpForm?.about}
+            onChange={(e)=>handleChange(e,"about")}
             name="about"
           />
           {/* {validate && about.trim().length === 0 ? (
@@ -88,8 +100,8 @@ const RegisterForm = () => {
           {active ? (
             <input
               type="date"
-              value={"birth"}
-              onChange={()=>{}}
+              value={signUpForm?.birth}
+              onChange={(e)=>handleChange(e,"birth")}
               name="birth"
               id="date"
             />
@@ -112,7 +124,7 @@ const RegisterForm = () => {
         <fieldset>
           <select
             value={"country"}
-            onChange={()=>{}
+            onChange={(e)=>setSignUpForm((prev)=>({...prev,country: e.target.value}))
             }
           >
             <option value="india">India</option>
@@ -122,25 +134,25 @@ const RegisterForm = () => {
 
         <div className={styles["gender"]}>
           <button
-            onClick={()=>{}}
-            className={"male"}
+            onClick={(e)=>setSignUpForm((prev)=>({...prev,gender: "male"}))}
+            className={male}
           >
-            {/* {gender === "male" && <BsCheck size={20} />} Male */}
+            { "male" && <BsCheck size={20} />} Male
           </button>
           <button
-            onClick={()=>{}
+            onClick={(e)=>setSignUpForm((prev)=>({...prev,gender: "female"}))
             }
-            // className={female}
+            className={female}
           >
-            {/* {gender === "female" && <BsCheck size={20} />} Female */}
+            {"female" && <BsCheck size={20} />} Female
           </button>
         </div>
         {/* {validate && name.trim().length === 0 ? (
           <p style={{ marginTop: "-7px" }}>Please select a preference.</p>
         ) : null} */}
 
-        <button className={styles["submit-form"]} onClick={()=>{}}>
-          {isLoading ? "Processing" : "JOIN US"}
+        <button className={styles["submit-form"]} onClick={handleSubmit}>
+          {signUpLoading ? "Processing" : "JOIN US"}
         </button>
 
         <span className={styles["member"]}>
