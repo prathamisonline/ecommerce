@@ -1,0 +1,371 @@
+@import "../../common/variables.scss";
+
+.home-wrap {
+  padding: 0 3rem;
+}
+
+.hero-image {
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.hero-about {
+  position: absolute;
+  bottom: 8%;
+  left: 4%;
+  width: 550px;
+  color: var(--background-color);
+
+  h1 {
+    font-size: 60px;
+    line-height: 1;
+  }
+
+  p {
+    width: 90%;
+    margin-top: 1rem;
+    opacity: 0.8;
+  }
+}
+
+.shop-home-button {
+  background-color: var(--background-color);
+  color: var(--main-font-color);
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: var(--fourth-font-size);
+  margin-top: 1rem;
+}
+
+.home-type {
+  width: 100%;
+  margin-top: 3rem;
+
+  h2 {
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+}
+
+.home-type-wrap {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+
+  img {
+    width: 100%;
+  }
+}
+
+.first-img {
+  position: relative;
+
+  img {
+    height: 500px;
+  }
+}
+
+.type-details {
+  position: absolute;
+  bottom: 6%;
+  left: 5%;
+  width: 250px;
+  color: var(--background-color);
+
+  h3 {
+    line-height: 1.1;
+    font-weight: 600;
+  }
+}
+
+.hero-shoes {
+  margin-top: 3rem;
+
+  h2 {
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+}
+
+.hero-shoes-about {
+  text-align: center;
+  margin-top: 1.5rem;
+
+  h1 {
+    font-size: 50px;
+  }
+
+  p {
+    font-size: var(--fourth-font-size);
+    opacity: 0.7;
+  }
+
+  button {
+    background-color: var(--main-font-color);
+    color: var(--background-color);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: var(--fourth-font-size);
+    margin-top: 1rem;
+  }
+}
+
+.home-iconic {
+  margin-top: 3rem;
+  position: relative;
+
+  h2 {
+    margin-bottom: 1rem;
+    font-weight: 500;
+    padding-left: 3rem;
+  }
+}
+
+.iconic-wrap {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 1rem;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    display: none;
+  }
+
+  img {
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+  }
+}
+
+.scroll {
+  padding: 0 3rem;
+
+  button {
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    @include displayFlex;
+    @include displayAllCenter;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    color: var(--main-font-color);
+
+    &:hover {
+      background-color: var(--background-color);
+    }
+  }
+}
+
+.sub-iconic {
+  position: relative;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+
+  p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: var(--primary-font-size);
+    color: var(--main-font-color);
+    font-weight: 700;
+    white-space: nowrap;
+    display: none;
+  }
+
+  &:hover {
+    scale: 1.02;
+  }
+
+  &:hover p {
+    display: block;
+  }
+}
+
+.popular-head {
+  @include displayCenter;
+  justify-content: space-between;
+  padding: 0 3rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+
+  h2 {
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .popular-button {
+    @include displayFlex;
+    gap: 20px;
+
+    button {
+      width: 35px;
+      height: 35px;
+      border-radius: 100%;
+      @include displayAllCenter;
+      color: var(--main-font-color);
+
+      &:hover {
+        background-color: var(--card-color);
+      }
+    }
+  }
+}
+
+.popular-wrap {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 1rem;
+  overflow: scroll;
+  padding-left: 3rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+  }
+
+  .popular-sub {
+    width: 400px;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+      height: 320px;
+    }
+  }
+
+  .popular-details {
+    @include displayFlex;
+    padding-right: 10px;
+    margin-top: 1rem;
+
+    p {
+      font-weight: 600;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .home-wrap {
+    padding: 0 1rem;
+  }
+
+  .hero-about {
+    width: 460px;
+    h1 {
+      font-size: 40px;
+    }
+  }
+
+  .popular-head {
+    padding: 0 1rem;
+  }
+
+  .home-iconic {
+    h2 {
+      padding-left: 1rem;
+    }
+  }
+
+  .popular-wrap {
+    padding-left: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-wrap {
+    button {
+      width: 50%;
+    }
+  }
+
+  .home-type-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-about {
+    width: 300px;
+    h1 {
+      font-size: 30px;
+    }
+
+    p {
+      font-size: var(--small-font-size);
+    }
+  }
+
+  .hero-shoes-about {
+    h1 {
+      font-size: 35px;
+    }
+  }
+
+  .first-img {
+    img {
+      height: 320px;
+    }
+  }
+
+  .popular-head {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero-about {
+    position: unset;
+    width: 80%;
+    color: black;
+    margin-top: 1rem;
+  }
+
+  .shop-home-button {
+    background-color: var(--main-font-color);
+    color: var(--background-color);
+  }
+
+  .iconic-wrap {
+    img {
+      width: 300px;
+      height: 250px;
+    }
+  }
+
+  .popular-wrap {
+    .popular-sub {
+      width: 320px;
+
+      img {
+        height: 260px;
+      }
+    }
+  }
+
+  .hero-shoes-about {
+    p {
+      font-size: var(--small-font-size);
+      width: 80%;
+      margin: auto;
+    }
+  }
+
+  .hero-image {
+    img {
+      height: 250px;
+      object-fit: auto;
+    }
+  }
+
+  .hero-shoes {
+    img {
+      height: 250px;
+    }
+  }
+}

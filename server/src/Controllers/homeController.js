@@ -13,7 +13,7 @@ export const createHomeData = async (req, res, next) => {
 }
 export const getHomedata = async (req, res, next) => {
     try {
-        const homeData = new Home.find()
+        const homeData = await Home.find()
         res.status(200).json(homeData);
 
     } catch (error) {

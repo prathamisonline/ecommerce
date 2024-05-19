@@ -1,0 +1,43 @@
+@import "../../common/variables.scss";
+
+.Loader {
+  @include displayAllCenter;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  gap: 5px;
+
+  p {
+    font-size: 12px;
+  }
+}
+
+.spinner {
+  @include displayAllCenter;
+  width: 100%;
+}
+
+.loaderIcon {
+  align-items: center;
+  color: black;
+  font-size: 2rem;
+  animation: App-logo-spin infinite 5s linear;
+}
+
+.spinnerIcon {
+  color: black;
+  font-size: 2rem;
+  animation: App-logo-spin infinite 5s linear;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

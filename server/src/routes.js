@@ -1,6 +1,5 @@
 
 // import PaymentRouter from "./Routes/PaymentRoutes.js";
-// import AddressRouter from "./Routes/AddressRoutes.js";
 // import ProductsRouter from "./Routes/ProductsRoutes.js";
 // import FavRouter from "./Routes/FavRoutes.js";
 // import ReviewRouter from "./Routes/ReviewRoutes.js";
@@ -10,11 +9,12 @@
 // import SearchRouter from "./Routes/SearchRoutes.js";
 import HomeRouter from "./routes/homeRoutes.js";
 import UserRouter from "./routes/userRoutes.js"
+import AddressRouter from "./routes/addressRoutes.js"
 
 export const routes = [
     UserRouter,
     // PaymentRouter, 
-    // AddressRouter,
+    AddressRouter,
     // ProductsRouter,
     // FavRouter,
     // ReviewRouter,
@@ -22,5 +22,5 @@ export const routes = [
     // CouponRouter,
     // SearchRouter,
     // SneakerRouter,
-    // HomeRouter,
+    HomeRouter,
 ];
